@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index']);
+
+Route::get('html', [MainController::class, 'html']);
+
+Route::post('post', [MainController::class, 'post']);
+
+Route::put('/', [MainController::class, 'put']);
+
+Route::any('any', [MainController::class, 'any']);
+
