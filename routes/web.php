@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +17,6 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::get('html', [MainController::class, 'html']);
+Route::get('create', [RolesController::class, 'create']);
 
-Route::post('post', [MainController::class, 'post']);
-
-Route::put('/', [MainController::class, 'put']);
-
-Route::any('any', [MainController::class, 'any']);
-
+Route::get('index', [RolesController::class, 'index']);
