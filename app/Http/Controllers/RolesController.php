@@ -16,13 +16,7 @@ class RolesController extends Controller
 
     public function index()
     {
-        $role = Role::find(11)->update([
-            'name' => 'tosha'
-        ]);
-        // $role->name = 'dima';
-        // $role->save();
-        Role::truncate();
-        return $role;
+        return Role::get();
     }
 
     public function show(Role $role)

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\RolesController;
 
@@ -17,12 +18,13 @@ use App\Http\Controllers\RolesController;
 
 Route::get('/', [MainController::class, 'index']);
 
-Route::post('roles', [RolesController::class, 'create']);
+Route::post('login', [AuthController::class, 'login']);
+Route::get('logout', [AuthController::class, 'logout']);
 
-Route::put('roles/{role}', [RolesController::class, 'update']);
-
-Route::get('index', [RolesController::class, 'index']);
-
-Route::get('roles/{role}', [RolesController::class, 'show']);
-
-Route::get('roles/{role}/users', [RolesController::class, 'users']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('roles', [RolesController::class, 'index'])->middleware('auth');
+    Route::post('roles', [RolesController::class, 'create']);
+    Route::put('roles/{role}', [RolesController::class, 'update']);
+    Route::get('roles/{role}', [RolesController::class, 'show']);
+    Route::get('roles/{role}/users', [RolesController::class, 'users']);
+});
