@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RolesController extends Controller
@@ -40,5 +41,11 @@ class RolesController extends Controller
         // $role->save();
         $role->update($request->only('name'));
         return response()->json($role);
+    }
+
+    public function users(Role $role)
+    {
+        return $role->users->map->name;
+        // return $role->users()->orderByDesc('id')->first();
     }
 }
