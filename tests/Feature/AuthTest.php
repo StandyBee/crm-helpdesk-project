@@ -14,7 +14,7 @@ class AuthTest extends TestCase
      */
     public function testAuth()
     {
-        $password = 123456;
+        $password = '123456';
         $user = User::factory()->create([
             'password' => bcrypt($password),
         ]);
