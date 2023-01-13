@@ -12,37 +12,25 @@ class TicketTest extends TestCase
 {
     //use RefreshDatabase;
     use DatabaseTransactions;
+
+    public function getTestData()
+    {
+        return [
+            [0, true],
+            [1, false]
+        ];
+    }
+
     /**
-     * A basic unit test example.
-     *
-     * @return void
+     * @dataProvider getTestData
      */
-    public function test_example()
+    public function testIsNew($status, $expectedResult)
     {
-        $this->assertTrue(true);
-    }
-
-    public function testIsNew()
-    {
-        // Role::create([
-        //     'name' => 'Client',
-        // ]);
+        //dump($status, $expectedResult);
         $ticket = Ticket::factory()->create([
-            'status' => 0,
+            'status' => $status,
         ]);
 
-        $this->assertTrue($ticket->isNew());
-    }
-
-    public function testIsNotNew()
-    {
-        // Role::create([
-        //     'name' => 'Admin'
-        // ]);
-        $ticket = Ticket::factory()->create([
-            'status' => 1,
-        ]);
-
-        $this->assertFalse($ticket->isNew());
+        $this->assertEquals($expectedResult, $ticket->isNew());
     }
 }
