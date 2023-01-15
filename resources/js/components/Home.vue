@@ -1,30 +1,47 @@
 <template>
   <div>
-      <h1>{{ title }}</h1>
-    <input type="text" v-model="title">
-    <ul>
-      <li v-for="user in users">{{ user }}</li>
-    </ul>
-    <input type="text" v-model="name">
-    <button type="button" @click="addUser">Add</button>
-    <div>
-      <h2>{{ user.name }}</h2>
-      <h2>{{ user.last }}</h2>
-    </div>
+      <h2>{{ title }}</h2>
+    <user-card
+      v-for="user in users" 
+      :user="user" 
+      text="some text..."
+      />
   </div>
 </template>
   
 <script>
+import User from './User.vue';
+
 export default {
   name: "Home",
+  components: {
+    'user-card': User,
+  },
   data() {
     return {
       title: "Crm Helppdesk",
-      users: ['Anton', 'Dima', 'Roma'],
-      user: {
-        name: 'first',
-        last: 'last',
-      },
+      users: [
+        {
+          name: 'Tota',
+          last: 'Letov',
+          role: 'admin',
+        },
+        {
+          name: 'Rita',
+          last: 'Tickel',
+          role: 'manager',
+        },
+        {
+          name: 'Emma',
+          last: 'Stome',
+          role: 'client',
+        },
+        {
+          name: 'Dash',
+          last: 'Board',
+          role: 'manager',
+        },
+    ],
       name: null,
     }
   },
