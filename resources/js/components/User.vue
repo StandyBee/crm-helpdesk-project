@@ -11,6 +11,7 @@
       <template v-else>
         <h2>{{ user.role }}</h2>
       </template>
+      <router-link :to="'/users/' + user.name">User's page {{ user.name }}</router-link>
     </div>
 </template>
 
