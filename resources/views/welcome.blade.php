@@ -12,7 +12,7 @@
     </head>
     <body class="antialiased">
        <div id="app">
-        <Home></Home>
+        <Home/>
        </div>
     </body>
 </html>
