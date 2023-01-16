@@ -11,6 +11,7 @@
     
 <script>
 import User from '../User.vue';
+import axios from 'axios';
 
 export default {
     name: "UsersList",
@@ -20,30 +21,14 @@ export default {
   data() {
     return {
       title: "Crm Helppdesk",
-      users: [
-        {
-          name: 'Tota',
-          last: 'Letov',
-          role: 'admin',
-        },
-        {
-          name: 'Rita',
-          last: 'Tickel',
-          role: 'manager',
-        },
-        {
-          name: 'Emma',
-          last: 'Stome',
-          role: 'client',
-        },
-        {
-          name: 'Dash',
-          last: 'Board',
-          role: 'manager',
-        },
-    ],
+      users: [],
       name: null,
     }
+  },
+  async mounted() {
+    let result = await axios.get('/users');
+    this.users = result.data;
+    //axios.get('/users').then(result => this.users = result.data);
   },
 }
 </script>

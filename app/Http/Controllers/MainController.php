@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -11,23 +12,19 @@ class MainController extends Controller
         return view('welcome');
     }
 
-    public function post()
+    public function users()
     {
-        return response()->json(['post' => 'ok'], 404);
-    }
-    
-    public function put()
-    {
-        return response()->json(['put' => 'ok']);
-    }
-
-    public function any()
-    {
-        return response()->json(['any' => 'ok']);
+        return User::get()->map(function (User $user) {
+            return [
+                'id' => $user->id,
+                'name' => $user->name,
+                'role' => $user->role->name,
+            ];
+        });
     }
 
-    public function html()
+    public function user($id)
     {
-        return response('current string', 404);
+        return User::find($id)->only('name', 'email');
     }
 }

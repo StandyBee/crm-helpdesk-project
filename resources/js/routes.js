@@ -6,7 +6,7 @@ import UserPage from './components/pages/UserPage.vue';
 const routes = [
     // {path: '/', component: Home},
     {path: '/users', component: UsersList},
-    {path: '/users/:name', component: UserPage},
+    {path: '/users/:id', component: UserPage},
     {path: '/admin', component: Admin},
 ];
 
